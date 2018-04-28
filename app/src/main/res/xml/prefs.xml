@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="@string/prefs_default_address"
+        android:inputType="text"
+        android:key="@string/prefs_address_key"
+        android:selectAllOnFocus="true"
+        android:summary="@string/prefs_default_address_summary"
+        android:title="@string/prefs_default_address" />
+
+    <EditTextPreference
+        android:defaultValue="@string/prefs_salary_filter"
+        android:key="@string/prefs_salary_pattern_key"
+        android:selectAllOnFocus="true"
+        android:summary="@string/prefs_salary_pattern_summary"
+        android:title="@string/prefs_salary_filter" />
+
+    <CheckBoxPreference
+        android:enabled="true"
+        android:key="prefs_group_by_month_checkbox"
+        android:title="@string/prefs_graph_group" />
+
+</PreferenceScreen>

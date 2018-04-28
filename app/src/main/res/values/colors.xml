@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#fff</color>
+
+    <color name="primary">#43a047</color>
+    <color name="primary_dark">#00701a</color>
+    <color name="accent">#bdbdbd</color>
+    <color name="secondary">#acacac</color>
+    <color name="transparent">#00000000</color>
+    <color name="red">@android:color/holo_red_dark</color>
+    <color name="button">#de701c</color>
+
+    <color name="graph_grid_vertical">@color/primary</color>
+    <color name="graph_body">#8CEAFF</color>
+    <color name="bg">#FFFAFAFA</color>
+    <color name="graph_circle">#57b8cc</color>
+    <color name="graph_high_sum_circle">@color/primary</color>
+    <color name="graph_low_sum_circle">#ab192d</color>
+
+    <color name="bottom_nav_bg_color_unchecked">#fff</color>
+    <color name="bottom_nav_bg_color_checked">@color/primary</color>
+    <color name="bottom_nav_icon_checked">#ffffff</color>
+    <color name="bottom_nav_icon_unchecked">#505050</color>
+
+</resources>

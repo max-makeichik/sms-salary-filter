@@ -1,0 +1,35 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.salaryfilter">
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <application
+        android:name="com.salaryfilter.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:logo="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.salaryfilter.presentation.ui.activity.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.salaryfilter.presentation.ui.activity.PrefsActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/prefs"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <meta-data
+            android:name="com.crashlytics.ApiKey"
+            android:value="83fef7fbc4cbffb2b4775876610d8c1e769359ab" />
+    </application>
+</manifest>

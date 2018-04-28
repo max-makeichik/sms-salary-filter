@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Фильтр зарплаты</string>
+    <string name="list_title">Список</string>
+    <string name="graph_title">График</string>
+
+    <!--salary-->
+    <string name="salary_currency">р</string>
+    <string name="salary">Зарплата</string>
+    <string name="salaries_empty_message">Нет сообщений для текущих настроек</string>
+    <string name="salaries_empty_prefs_button">Настройки</string>
+
+    <!--prefs-->
+    <string name="prefs_default_address">900</string>
+    <string name="prefs_default_address_summary">Смс-адрес отправителя</string>
+    <string name="err_empty_address">Адрес не может быть пустым!</string>
+    <string name="prefs_salary_filter">зачисление зарплаты</string>
+    <string name="prefs_salary_pattern_summary">Строка в СМС-сообщении (перед суммой)</string>
+    <string name="prefs_graph_group">Группировать суммы за месяц</string>
+    <string name="prefs">Настройки</string>
+
+    <!--rate-->
+    <string name="rate_app_title">Оценить приложение</string>
+    <string name="rate_app_message">Если Вам нравится приложение, пожалуйста, оцените его. Это не займет много времени.
+        Спасибо за Вашу поддержку!</string>
+    <string name="rate_app_yes">Оценить</string>
+    <string name="rate_app_no">Нет, спасибо</string>
+    <string name="rate_app_cancel">Позже</string>
+
+</resources>

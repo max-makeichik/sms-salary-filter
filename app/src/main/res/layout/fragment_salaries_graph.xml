@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/salary_graph_padding_vertical"
+    android:paddingBottom="@dimen/salary_graph_padding_vertical"
+    android:paddingStart="@dimen/salary_graph_padding_horizontal"
+    android:paddingEnd="@dimen/salary_graph_padding_horizontal"
+    android:background="@color/white">
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/salaries_line_chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="visible" />
+
+</android.support.constraint.ConstraintLayout>

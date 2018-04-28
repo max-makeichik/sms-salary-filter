@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Salary filter</string>
+    <string name="list_title">List</string>
+    <string name="graph_title">Graph</string>
+
+    <!--salary-->
+    <string name="salary_currency">р</string>
+    <string name="salary">Salary</string>
+    <string name="salaries_empty_message">No messages with current filter</string>
+    <string name="salaries_empty_prefs_button">Open settings</string>
+
+    <!--prefs-->
+    <string name="prefs_default_address">900</string>
+    <string name="prefs_default_address_summary">Sender Sms-address</string>
+    <string name="err_empty_address">Address can\'t be empty!</string>
+    <string name="prefs_salary_filter">credited with</string>
+    <string name="prefs_salary_pattern_summary">String to find in sms (before the sum with currency)</string>
+    <string name="prefs_graph_group">Group salaries by month</string>
+    <string name="prefs">Preferences</string>
+    <!--keys-->
+    <string name="prefs_group_by_month_key" translatable="false">prefs_group_by_month_checkbox</string>
+    <string name="prefs_address_key" translatable="false">prefs_address_key</string>
+    <string name="prefs_salary_pattern_key" translatable="false">prefs_pattern_key</string>
+
+    <!--rate-->
+    <string name="rate_app_title">Rate app</string>
+    <string name="rate_app_message">If you enjoy using app, would you mind taking a moment to rate it?
+        It won\'t take more than a minute. Thank you for your support!</string>
+    <string name="rate_app_yes">Rate</string>
+    <string name="rate_app_no">No, thanks</string>
+    <string name="rate_app_cancel">Later</string>
+
+</resources>
