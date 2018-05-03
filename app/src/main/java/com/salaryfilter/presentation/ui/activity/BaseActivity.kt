@@ -2,17 +2,25 @@ package com.salaryfilter.presentation.ui.activity
 
 import android.app.Fragment
 import android.app.FragmentTransaction
+import android.os.Bundle
 import android.support.annotation.StringRes
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.salaryfilter.R
+import com.salaryfilter.presentation.ui.ErrorHandleDelegate
 import com.salaryfilter.util.getName
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 abstract class BaseActivity : MvpAppCompatActivity() {
+
+    private val errorHandleDelegate = ErrorHandleDelegate()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        errorHandleDelegate.onCreate(this)
+    }
 
     protected fun setToolbar(string: String) {
         setSupportActionBar(toolbar)
@@ -42,10 +50,11 @@ abstract class BaseActivity : MvpAppCompatActivity() {
     }
 
     fun showError(errorMessage: String) {
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+        errorHandleDelegate.showError(errorMessage)
     }
 
-    fun hideError() {}
+    fun hideError() {
+    }
 
     protected fun replaceFragment(fragment: Fragment) {
         fragmentManager.beginTransaction()

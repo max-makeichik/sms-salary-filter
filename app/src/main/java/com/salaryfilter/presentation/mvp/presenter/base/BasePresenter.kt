@@ -2,11 +2,10 @@ package com.salaryfilter.presentation.mvp.presenter.base
 
 import com.arellomobile.mvp.MvpPresenter
 import com.salaryfilter.presentation.mvp.view.base.BaseMvpView
-
 import io.reactivex.disposables.CompositeDisposable
 
 /**
- * Created by Andrey V. Murzin on 29.06.17.
+ * Created by Max Makeychik on 29.06.17.
  */
 open class BasePresenter<View : BaseMvpView> : MvpPresenter<View>() {
 

@@ -6,6 +6,7 @@ import com.salaryfilter.domain.model_interface.IResourceManager
 import com.salaryfilter.domain.model_interface.ISalaryListModel
 import com.salaryfilter.presentation.mvp.presenter.base.BasePresenter
 import com.salaryfilter.presentation.mvp.view.SalariesListMvpView
+import com.salaryfilter.util.exception.EmptySalaryException
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -33,17 +34,27 @@ class SalariesPresenter : BasePresenter<SalariesListMvpView>() {
     }
 
     fun updateSalaries() {
-        viewState.clearSalary()
-        viewState.showLoading()
         disposables.add(salaryModel.getSalaryListOneByOne()
+                .doOnSubscribe {
+                    viewState.clearSalary()
+                    viewState.showLoading()
+                }
+                .doFinally { viewState.hideLoading() }
                 .subscribe(
                         { salary ->
                             viewState.addSalaryToList(salary)
                             viewState.hideLoading()
                         },
-                        { t -> onError(t, "") },
+                        { t ->
+                            run {
+                                if (t is EmptySalaryException) {
+                                    viewState.showEmptySmsList()
+                                } else {
+                                    onError(t, "")
+                                }
+                            }
+                        },
                         {
-                            viewState.hideLoading()
                             viewState.showSalariesAdded()
                         }
                 ))

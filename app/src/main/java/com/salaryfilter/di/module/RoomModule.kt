@@ -21,6 +21,6 @@ class RoomModule {
     fun providesSalaryDao(database: AppDatabase) = database.salaryDao()
 
     companion object {
-        val DB_NAME = "salary-db"
+        const val DB_NAME = "salary-db"
     }
 }

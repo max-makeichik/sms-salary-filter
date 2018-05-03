@@ -30,7 +30,8 @@ class App : Application() {
         buildAppComponent()
         buildSalaryComponent()
 
-        RxJavaPlugins.setErrorHandler { e -> Fabric.getLogger().log(0, "App", e.message)
+        RxJavaPlugins.setErrorHandler { e ->
+            Fabric.getLogger().log(0, "App", e.message)
         }
     }
 

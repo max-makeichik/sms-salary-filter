@@ -10,7 +10,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 /**
- * Created by Andrey V. Murzin on 26.07.17.
+ * Created by Max Makeychik on 26.07.17.
  */
 
 @Component(modules = [RoomModule::class, ApiModule::class, AppModule::class, NetworkClientModule::class,

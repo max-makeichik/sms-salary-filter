@@ -2,7 +2,7 @@ package com.salaryfilter.data.repository.repository_impl
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.content.edit
+import androidx.core.content.edit
 import com.salaryfilter.R
 import com.salaryfilter.data.repository.repository_interface.IPrefsRepository
 import timber.log.Timber
