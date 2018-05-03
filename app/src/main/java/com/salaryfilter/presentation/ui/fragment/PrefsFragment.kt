@@ -1,45 +1,43 @@
 package com.salaryfilter.presentation.ui.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import android.preference.CheckBoxPreference
 import android.preference.EditTextPreference
 import android.preference.Preference
-import android.preference.PreferenceFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.salaryfilter.App
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.salaryfilter.R
-import com.salaryfilter.data.repository.repository_interface.IPrefsRepository
+import com.salaryfilter.presentation.mvp.presenter.PrefsPresenter
+import com.salaryfilter.presentation.mvp.view.PrefsMvpView
+import com.salaryfilter.presentation.ui.fragment.base.MvpPrefsFragment
 import com.salaryfilter.util.ViewUtil
-import javax.inject.Inject
 
-class PrefsFragment : PreferenceFragment() {
+class PrefsFragment : MvpPrefsFragment(), PrefsMvpView {
 
-    @Inject
-    lateinit var prefsRepository: IPrefsRepository
-
-    private lateinit var prefsListener: PrefsFragment.PrefsListener
+    @InjectPresenter
+    lateinit var prefsPresenter: PrefsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.appComponent.inject(this)
         addPreferencesFromResource(R.xml.prefs)
 
         val groupByMonthCheckbox = findPreference(getString(R.string.prefs_group_by_month_key)) as CheckBoxPreference
         groupByMonthCheckbox.apply {
-            isChecked = prefsRepository.isGroupByMonth()
+            isChecked = prefsPresenter.isGroupByMonth()
             onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, value ->
-                prefsListener.onSalaryChange()
+                prefsPresenter.onSalaryChange()
                 groupByMonthCheckbox.isChecked = !groupByMonthCheckbox.isChecked
-                prefsRepository.putGroupByMonth(value as Boolean)
+                prefsPresenter.putGroupByMonth(value as Boolean)
                 true
             }
         }
         // TODO: 02-Mar-18 set number empty forbid
         val addressEditTextPreference = findPreference(getString(R.string.prefs_address_key)) as EditTextPreference
-        val address = prefsRepository.getAddress()
+        val address = prefsPresenter.getAddress()
         addressEditTextPreference.apply {
             title = address
             setDefaultValue(address)
@@ -49,45 +47,36 @@ class PrefsFragment : PreferenceFragment() {
                     Toast.makeText(activity, getString(R.string.err_empty_address), Toast.LENGTH_SHORT).show()
                     false
                 } else {
-                    prefsListener.onSalaryChange()
+                    prefsPresenter.onSalaryChange()
                     title = value.toString()
-                    prefsRepository.putAddress(value as String)
+                    prefsPresenter.putAddress(value as String)
                     true
                 }
             }
         }
 
         val salaryPatternEditTextPreference = findPreference(getString(R.string.prefs_salary_pattern_key)) as EditTextPreference
-        val salaryFilterPattern = prefsRepository.getSalaryFilterPattern()
+        val salaryFilterPattern = prefsPresenter.getSalaryFilterPattern()
         salaryPatternEditTextPreference.apply {
             title = salaryFilterPattern
             dialogTitle = ""
             setDefaultValue(salaryFilterPattern)
             onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, value ->
-                prefsListener.onSalaryChange()
+                prefsPresenter.onSalaryChange()
                 title = value.toString()
-                prefsRepository.putSalaryFilterPattern(value as String)
+                prefsPresenter.putSalaryFilterPattern(value as String)
                 true
             }
         }
+    }
+
+    override fun setResultOk() {
+        activity.setResult(Activity.RESULT_OK)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         view!!.setBackgroundColor(ViewUtil.getBgColor(activity))
         return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (activity is PrefsListener) {
-            prefsListener = activity as PrefsListener
-        } else {
-            throw IllegalStateException("Activity must implement PrefsListener")
-        }
-    }
-
-    interface PrefsListener {
-        fun onSalaryChange()
     }
 }

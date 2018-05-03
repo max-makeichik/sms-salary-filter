@@ -2,6 +2,7 @@ package com.salaryfilter.presentation.ui.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.salaryfilter.R
 import com.salaryfilter.domain.global.model.Salary
@@ -108,8 +109,15 @@ class SalaryAdapter(private val context: Activity, private val salaryList: Mutab
         viewHolder.bind(context, section)
     }
 
-    interface SalaryListener {
+    // TODO: 03-May-18 Fix of bug with support version = 27.1.0. Remove when stickyheaders library will be updated
+    override fun onCreateGhostHeaderViewHolder(parent: ViewGroup): SectioningAdapter.GhostHeaderViewHolder {
+        val ghostView = View(parent.context)
+        ghostView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
+        return SectioningAdapter.GhostHeaderViewHolder(ghostView)
+    }
+
+    interface SalaryListener {
     }
 
 }

@@ -1,10 +1,9 @@
 package com.salaryfilter.domain.model_impl
 
-import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import com.salaryfilter.App
-import com.salaryfilter.data.db.dao.SalariesDao
+import com.salaryfilter.R
 import com.salaryfilter.data.repository.repository_interface.IPrefsRepository
 import com.salaryfilter.data.repository.repository_interface.ISalariesRepository
 import com.salaryfilter.domain.global.model.Salary
@@ -18,19 +17,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import timber.log.Timber
-import javax.inject.Inject
 
 /**
  * Created by Max Makeychik on 04-Dec-17.
  */
-class SalaryListModelImpl(private val salariesRepository: ISalariesRepository, val prefsRepository: IPrefsRepository) : ISalaryListModel {
-
-    @Inject
-    lateinit var salaryDao: SalariesDao
-    @Inject
-    lateinit var context: Context
-    @Inject
-    lateinit var resourceManager: IResourceManager
+class SalaryListModelImpl(private val salariesRepository: ISalariesRepository, private val prefsRepository: IPrefsRepository,
+                          private val resourceManager: IResourceManager) : ISalaryListModel {
 
     private var salary: Salary? = null
     private val updateSalariesSubject = PublishSubject.create<RxUtil.Irrelevant>()
@@ -46,7 +38,7 @@ class SalaryListModelImpl(private val salariesRepository: ISalariesRepository, v
     override fun getSalaryListOneByOne(): Flowable<Salary> {
         Timber.d("getSalaryListOneByOne")
         val flowable = Flowable.create<Salary>({ emitter ->
-            val cursor = context.contentResolver.query(Uri.parse("content://sms/inbox"),
+            val cursor = resourceManager.getContext().contentResolver.query(Uri.parse("content://sms/inbox"),
                     null, null, null, null)
             val salaryList = ArrayList<Salary>()
             if (cursor.moveToFirst()) {
@@ -61,7 +53,7 @@ class SalaryListModelImpl(private val salariesRepository: ISalariesRepository, v
                     }
                 } while (cursor.moveToNext())
             } else {
-                emitter.onError(EmptySalaryException())
+                emitter.onError(EmptySalaryException(resourceManager.getString(R.string.salaries_empty_message)))
             }
             salariesRepository.setSalaryList(salaryList)
             emitter.onComplete()

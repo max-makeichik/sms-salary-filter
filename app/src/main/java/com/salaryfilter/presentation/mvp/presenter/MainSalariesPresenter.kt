@@ -7,7 +7,6 @@ import com.salaryfilter.domain.model_interface.ISalaryListModel
 import com.salaryfilter.presentation.mvp.presenter.base.BasePresenter
 import com.salaryfilter.presentation.mvp.view.SalariesMvpView
 import com.salaryfilter.util.RxUtil
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -23,12 +22,6 @@ class MainSalariesPresenter : BasePresenter<SalariesMvpView>() {
 
     init {
         App.salaryListComponent.inject(this)
-        Timber.d("here")
-    }
-
-    override fun attachView(view: SalariesMvpView) {
-        super.attachView(view)
-        Timber.d("attachView")
     }
 
     fun updateSalaries() {

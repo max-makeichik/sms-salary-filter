@@ -11,7 +11,7 @@ import android.widget.ImageView
 data class LoadImageUtil(val context: Context, private val url: String?, private val placeholder: Placeholder,
                          private val error: Error, private val params: Params, private val imageView: ImageView) {
 
-    fun load() : LoadImageUtil {
+    fun load(): LoadImageUtil {
         val glide = GlideApp.with(context)
         var requestManager: GlideRequest<Drawable>
         if (TextUtils.isEmpty(url)) {

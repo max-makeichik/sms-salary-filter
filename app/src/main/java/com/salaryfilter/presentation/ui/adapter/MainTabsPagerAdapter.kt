@@ -2,7 +2,6 @@ package com.salaryfilter.presentation.ui.adapter
 
 import android.app.Fragment
 import android.app.FragmentManager
-import android.content.Context
 import android.support.v13.app.FragmentPagerAdapter
 import com.salaryfilter.R
 import com.salaryfilter.presentation.ui.fragment.SalaryGraphFragment
@@ -11,27 +10,15 @@ import com.salaryfilter.util.getKeyByValue
 import java.util.*
 
 /**
- * Created by SpireX on 21.06.2017.
+ * Created by Max Makeychik on 21.06.2017.
  */
 
-class MainTabsPagerAdapter(private val mContext: Context, private val fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class MainTabsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     private var salariesListFragment: SalaryListFragment? = null
     private var salariesGraphFragment: SalaryGraphFragment? = null
-    private var mListener: BottomTabsAdapterListener? = null
-
-    interface BottomTabsAdapterListener {
-        fun showSelectRestaurantMenu(isShow: Boolean)
-    }
-
-    init {
-        if (mContext is BottomTabsAdapterListener) {
-            this.mListener = mContext
-        }
-    }
 
     override fun getItem(position: Int): Fragment? {
-        showSelectRestaurantMenu(false)
         when (position) {
             POSITION_SALARIES_LIST -> {
                 if (salariesListFragment == null) {
@@ -51,12 +38,6 @@ class MainTabsPagerAdapter(private val mContext: Context, private val fm: Fragme
 
     override fun getCount(): Int {
         return BOTTOM_NAVIGATION_ITEMS_COUNT
-    }
-
-    private fun showSelectRestaurantMenu(isShow: Boolean) {
-        if (mListener != null) {
-            mListener!!.showSelectRestaurantMenu(isShow)
-        }
     }
 
     companion object {

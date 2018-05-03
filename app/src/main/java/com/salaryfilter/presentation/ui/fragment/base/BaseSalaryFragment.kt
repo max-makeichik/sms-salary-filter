@@ -6,7 +6,7 @@ import com.salaryfilter.presentation.ui.fragment.BaseFragment
 /**
  * Created by Max Makeychik on 28-Feb-18.
  */
-abstract class BaseSalaryFragment: BaseFragment() {
+abstract class BaseSalaryFragment : BaseFragment() {
 
     protected lateinit var menuListener: MenuListener
 
@@ -17,7 +17,7 @@ abstract class BaseSalaryFragment: BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        if(activity is MenuListener) {
+        if (activity is MenuListener) {
             menuListener = activity as MenuListener
         } else {
             throw IllegalStateException("Activity must implement MenuListener")

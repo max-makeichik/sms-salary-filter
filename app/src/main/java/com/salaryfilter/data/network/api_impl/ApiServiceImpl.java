@@ -6,7 +6,7 @@ import com.salaryfilter.data.network.api_interface.INetworkClient;
 import timber.log.Timber;
 
 /**
- * Created by Andrey V. Murzin on 26.06.17.
+ * Created by Max Makeychik on 26.06.17.
  */
 
 public class ApiServiceImpl implements ApiService {

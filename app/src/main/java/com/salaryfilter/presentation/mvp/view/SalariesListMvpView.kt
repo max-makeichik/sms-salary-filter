@@ -11,8 +11,13 @@ import com.salaryfilter.presentation.mvp.view.base.BaseMvpView
 interface SalariesListMvpView : BaseMvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun addSalaryToList(salary: Salary)
+
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun clearSalary()
+
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showSalariesAdded()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun showEmptySmsList()
 }

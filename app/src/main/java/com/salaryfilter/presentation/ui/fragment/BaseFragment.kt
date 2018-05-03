@@ -7,10 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.MvpFragment
 import com.salaryfilter.presentation.mvp.view.base.BaseMvpView
+import com.salaryfilter.presentation.ui.ErrorHandleDelegate
 
 abstract class BaseFragment : MvpFragment() {
 
     private lateinit var loadDataListener: BaseMvpView
+    private val errorHandleDelegate = ErrorHandleDelegate()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        errorHandleDelegate.onCreate(activity)
+    }
 
     override fun onCreateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): View? {
         return layoutInflater.inflate(getLayoutId(), viewGroup, false)
@@ -34,11 +41,10 @@ abstract class BaseFragment : MvpFragment() {
     }
 
     fun showError(errorMessage: String) {
-        loadDataListener.showError(errorMessage)
+        errorHandleDelegate.showError(errorMessage)
     }
 
     fun hideError() {
-        loadDataListener.hideError()
     }
 
     @LayoutRes

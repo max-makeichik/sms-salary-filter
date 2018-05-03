@@ -23,7 +23,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Andrey V. Murzin on 10.07.17.
+ * Created by Max Makeychik on 10.07.17.
  */
 
 public class NetworkClientImpl implements INetworkClient {

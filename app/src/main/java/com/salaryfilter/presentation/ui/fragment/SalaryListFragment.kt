@@ -65,6 +65,10 @@ class SalaryListFragment : BaseSalaryFragment(), SalariesListMvpView {
         salary_list_recycler.changeVisibility()
     }
 
+    override fun showEmptySmsList() {
+        showError(getString(R.string.salaries_empty_message))
+    }
+
     override fun getLayoutId(): Int {
         return R.layout.fragment_salaries_list
     }

@@ -22,9 +22,12 @@ import kotlinx.android.synthetic.main.fragment_salaries_graph.*
 import java.util.*
 
 class SalaryGraphFragment : BaseSalaryFragment(), SalariesGraphMvpView {
-
     @InjectPresenter
     lateinit var presenter: SalariesGraphPresenter
+
+    override fun showEmptySmsList() {
+        showError(getString(R.string.salaries_empty_message))
+    }
 
     override fun hideLoading() {
         super.hideLoading()
@@ -32,7 +35,7 @@ class SalaryGraphFragment : BaseSalaryFragment(), SalariesGraphMvpView {
     }
 
     override fun showSalariesGraph(salaries: List<Salary>, entries: ArrayList<Entry>) {
-        val dataSet = LineDataSet(entries, getString(R.string.salary)  + " - " + salaries[0].currency)
+        val dataSet = LineDataSet(entries, getString(R.string.salary) + " - " + salaries[0].currency)
         styleData(dataSet)
         styleAxis(salaries)
         salaries_line_chart.visibility = View.VISIBLE

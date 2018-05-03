@@ -7,6 +7,10 @@ import javax.inject.Inject
 class AndroidResourceManager @Inject
 constructor(private val context: Context) : IResourceManager {
 
+    override fun getContext(): Context {
+        return context
+    }
+
     override fun getString(resourceId: Int): String {
         return context.resources.getString(resourceId)
     }

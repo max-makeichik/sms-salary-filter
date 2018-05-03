@@ -16,11 +16,10 @@ import timber.log.Timber
  * Created by Maksim Makeychik on 08.03.2018.
  */
 abstract class BaseTabsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    //------ BottomNavigationView --------------------//
 
-    protected fun setBottomBar() {
+    protected fun setTabs() {
         getViewPager().apply {
-            adapter = MainTabsPagerAdapter(this@BaseTabsActivity, fragmentManager)
+            adapter = MainTabsPagerAdapter(fragmentManager)
             offscreenPageLimit = MainTabsPagerAdapter.BOTTOM_NAVIGATION_ITEMS_COUNT
         }
         bottom_navigation.removeShiftMode()
@@ -31,7 +30,7 @@ abstract class BaseTabsActivity : BaseActivity(), BottomNavigationView.OnNavigat
             itemView.setChecked(false)
         }
         bottom_navigation.setOnNavigationItemSelectedListener(this)
-        setBottomBarItemSelectedOnFirstTime(MainTabsPagerAdapter.POSITION_SALARIES_LIST)
+        setBottomBarItemSelected(MainTabsPagerAdapter.POSITION_SALARIES_LIST)
     }
 
     /**
@@ -60,10 +59,6 @@ abstract class BaseTabsActivity : BaseActivity(), BottomNavigationView.OnNavigat
     protected fun setBottomBarItemSelected(position: Int) {
         getViewPager().setCurrentItem(position, false)
         bottom_navigation.selectedItemId = getMenuIdByFragmentPosition(position)
-    }
-
-    protected fun setBottomBarItemSelectedOnFirstTime(position: Int) {
-        setBottomBarItemSelected(position)
     }
 
     /**

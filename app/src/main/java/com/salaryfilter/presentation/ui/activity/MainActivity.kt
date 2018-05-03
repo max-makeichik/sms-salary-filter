@@ -29,7 +29,7 @@ class MainActivity : BaseTabsActivity(), BaseSalaryFragment.MenuListener, Salari
         super.onCreate(bundle)
         setContentView(R.layout.activity_main)
         setToolbar(R.string.app_name)
-        setBottomBar()
+        setTabs()
         watchBackStack()
 
         setRateAppDialog()
@@ -73,7 +73,7 @@ class MainActivity : BaseTabsActivity(), BaseSalaryFragment.MenuListener, Salari
         return when (item.itemId) {
             R.id.action_salaries_graph -> {
                 setBottomBarItemSelected(MainTabsPagerAdapter.POSITION_SALARIES_GRAPH)
-                Handler().post{
+                Handler().post {
                     this.menu.findItem(R.id.action_salaries_graph).isVisible = false
                     this.menu.findItem(R.id.action_salaries_list).isVisible = true
                 }
@@ -99,11 +99,14 @@ class MainActivity : BaseTabsActivity(), BaseSalaryFragment.MenuListener, Salari
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             REQUEST_CODE_UPDATE_SALARY -> {
-                if (resultCode == Activity.RESULT_OK)
+                if (resultCode == Activity.RESULT_OK) {
                     presenter.updateSalaries()
+                }
             }
         }
     }
+
+
 
     override fun getViewPager(): ViewPager {
         return main_view_pager
