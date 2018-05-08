@@ -2,11 +2,14 @@ package com.salaryfilter.presentation.mvp.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.salaryfilter.App
+import com.salaryfilter.data.repository.repository_interface.ISalaryRepository
+import com.salaryfilter.domain.interactor_interface.IGetSalariesUseCase
 import com.salaryfilter.domain.model_interface.IResourceManager
-import com.salaryfilter.domain.model_interface.ISalaryListModel
 import com.salaryfilter.presentation.mvp.presenter.base.BasePresenter
 import com.salaryfilter.presentation.mvp.view.SalariesListMvpView
 import com.salaryfilter.util.exception.EmptySalaryException
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -17,13 +20,15 @@ import javax.inject.Inject
 class SalariesPresenter : BasePresenter<SalariesListMvpView>() {
 
     @Inject
-    lateinit var salaryModel: ISalaryListModel
+    lateinit var salaryRepository: ISalaryRepository
+    @Inject
+    lateinit var getSalariesUseCase: IGetSalariesUseCase
     @Inject
     lateinit var resourceManager: IResourceManager
 
     init {
         App.salaryListComponent.inject(this)
-        disposables.add(salaryModel.getUpdateSalariesSubject().subscribe {
+        disposables.add(salaryRepository.getUpdateSalariesSubject().subscribe {
             updateSalaries()
         })
     }
@@ -34,12 +39,14 @@ class SalariesPresenter : BasePresenter<SalariesListMvpView>() {
     }
 
     fun updateSalaries() {
-        disposables.add(salaryModel.getSalaryListOneByOne()
+        disposables.add(getSalariesUseCase.getSalaryListOneByOne()
                 .doOnSubscribe {
                     viewState.clearSalary()
                     viewState.showLoading()
                 }
                 .doFinally { viewState.hideLoading() }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { salary ->
                             viewState.addSalaryToList(salary)

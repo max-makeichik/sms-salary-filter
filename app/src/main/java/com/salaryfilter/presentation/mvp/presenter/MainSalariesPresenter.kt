@@ -2,11 +2,10 @@ package com.salaryfilter.presentation.mvp.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.salaryfilter.App
+import com.salaryfilter.data.repository.repository_interface.ISalaryRepository
 import com.salaryfilter.domain.model_interface.IResourceManager
-import com.salaryfilter.domain.model_interface.ISalaryListModel
 import com.salaryfilter.presentation.mvp.presenter.base.BasePresenter
 import com.salaryfilter.presentation.mvp.view.SalariesMvpView
-import com.salaryfilter.util.RxUtil
 import javax.inject.Inject
 
 /**
@@ -16,7 +15,7 @@ import javax.inject.Inject
 class MainSalariesPresenter : BasePresenter<SalariesMvpView>() {
 
     @Inject
-    lateinit var salaryModel: ISalaryListModel
+    lateinit var salaryRepository: ISalaryRepository
     @Inject
     lateinit var resourceManager: IResourceManager
 
@@ -25,7 +24,7 @@ class MainSalariesPresenter : BasePresenter<SalariesMvpView>() {
     }
 
     fun updateSalaries() {
-        salaryModel.getUpdateSalariesSubject().onNext(RxUtil.Irrelevant.INSTANCE)
+        salaryRepository.updateSalaries()
     }
 
 }
