@@ -1,18 +1,17 @@
-package com.salaryfilter.domain.model_interface
+package com.salaryfilter.data.repository.repository_interface
 
 import com.salaryfilter.domain.global.model.Salary
 import com.salaryfilter.util.RxUtil
-import io.reactivex.Flowable
 import io.reactivex.subjects.PublishSubject
 
 /**
  * Created by Max Makeychik on 04-Dec-17.
  */
-interface ISalaryListModel {
-    fun getSalaryListOneByOne(): Flowable<Salary>
-    fun getSalary(): Salary
-    fun setSalary(salary: Salary)
+interface ISalaryRepository {
+    fun setSalaryList(salaryList: List<Salary>)
+    fun getSalaries(groupedByMonth: Boolean): List<Salary>
+    fun updateSalaries()
     fun getUpdateSalariesSubject(): PublishSubject<RxUtil.Irrelevant>
-    fun getCachedSalaries(): List<Salary>
     fun hasCachedSalaries(): Boolean
+    fun getCachedSalaries(): List<Salary>
 }

@@ -54,6 +54,7 @@ def jodaVersion = '2.9.9.1'
 //Test
 def mockitoKotlinVersion = '1.5.0'
 def robolectricVersion = '3.4.2'
+def powermockVersion = '1.6.2'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -127,5 +128,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation 'com.nhaarman:mockito-kotlin:' + mockitoKotlinVersion
     testImplementation 'org.robolectric:robolectric:' + robolectricVersion
-    testImplementation "joda-time:joda-time:2.9.9"
+    testImplementation 'joda-time:joda-time:2.9.9'
+    testImplementation 'org.powermock:powermock-module-junit4:' + powermockVersion
+    testImplementation 'org.powermock:powermock-module-junit4-rule:' + powermockVersion
+    testImplementation 'org.powermock:powermock-api-mockito:' + powermockVersion
+    testImplementation 'org.powermock:powermock-classloading-xstream:' + powermockVersion
 }

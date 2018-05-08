@@ -30,6 +30,7 @@ class Salary {
     constructor()
 
     /**
+     * @param filterString - string to filter salary text with
      * @return true if sum has been set, false otherwise
      */
     internal fun setSum(filterString: String): Boolean {
@@ -72,10 +73,6 @@ class Salary {
         return (address.isEmpty() || this.address == address) && text.toLowerCase().contains(pattern)
     }
 
-    fun getDateString(): String {
-        return DateUtil.getMonthYear(date)
-    }
-
     fun getListDateString(): String {
         return DateUtil.getFullMonthYear(date)
     }
@@ -94,6 +91,8 @@ class Salary {
     }
 
     override fun toString(): String {
-        return "Salary(id=$id, sum='$sum', text='$text', date='${date}')"
+        return "Salary(id=$id, text='$text', sum=$sum, sumString='$sumString', date=$date, address='$address', currency='$currency')"
     }
+
+
 }

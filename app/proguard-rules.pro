@@ -78,17 +78,6 @@
 -keep class com.crashlytics.** { *; }
 -keep class com.crashlytics.android.**
 
-# Butterknife
--keep class butterknife.** { *; }
--dontwarn butterknife.internal.**
--keep class **$$ViewBinder { *; }
--keepclasseswithmembernames class * {
-    @butterknife.* <fields>;
-}
--keepclasseswithmembernames class * {
-    @butterknife.* <methods>;
-}
-
 # Retrofit2
 -dontwarn okio.**
 -dontwarn javax.annotation.**

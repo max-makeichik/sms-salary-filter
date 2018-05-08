@@ -15,6 +15,6 @@
         android:paddingEnd="@dimen/salary_list_item_text_padding_side"
         android:paddingStart="@dimen/salary_list_item_text_padding_side"
         android:textSize="@dimen/salary_list_item_text_size"
-        tools:text="salary text" />
+        tools:text="Your account 'Save 1' was credited with $ 999.99 on Wed 22 Nov 2006" />
 
 </FrameLayout>
