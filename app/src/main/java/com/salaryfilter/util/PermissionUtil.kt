@@ -41,10 +41,4 @@ object PermissionUtil {
         return ContextCompat.checkSelfPermission(context, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED
     }
 
-    fun requestReadSalaryPermissions(activity: Activity, code: Int) {
-        val permissions = arrayOf(Manifest.permission.READ_SMS)
-        ActivityCompat.requestPermissions(activity, permissions, code)
-    }
-
-
 }

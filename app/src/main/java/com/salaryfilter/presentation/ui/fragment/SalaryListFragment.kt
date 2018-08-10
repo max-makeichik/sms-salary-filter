@@ -1,5 +1,6 @@
 package com.salaryfilter.presentation.ui.fragment
 
+import android.Manifest
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.view.View
@@ -23,10 +24,10 @@ class SalaryListFragment : BaseSalaryFragment(), SalariesListMvpView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (PermissionUtil.hasReadSalaryPermissions(activity)) {
+        if (PermissionUtil.hasReadSalaryPermissions(context!!)) {
             presenter.updateSalaries()
         } else {
-            PermissionUtil.requestReadSalaryPermissions(activity, PERMISSION_REQUEST_CODE_READ_SMS)
+            requestPermissions(arrayOf(Manifest.permission.READ_SMS), PERMISSION_REQUEST_CODE_READ_SMS)
         }
     }
 
@@ -49,8 +50,7 @@ class SalaryListFragment : BaseSalaryFragment(), SalariesListMvpView {
         adapter.updateData(mutableListOf())
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray?) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSION_REQUEST_CODE_READ_SMS -> presenter.updateSalaries()
         }
@@ -69,9 +69,7 @@ class SalaryListFragment : BaseSalaryFragment(), SalariesListMvpView {
         showError(getString(R.string.salaries_empty_message))
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_salaries_list
-    }
+    override fun getLayoutId() = R.layout.fragment_salaries_list
 
     companion object {
         const val PERMISSION_REQUEST_CODE_READ_SMS = 0

@@ -66,9 +66,9 @@ class SalaryGraphFragment : BaseSalaryFragment(), SalariesGraphMvpView {
             setDrawLabels(true)
             position = XAxis.XAxisPosition.TOP
             //setDrawGridLines(false)
-            gridColor = ContextCompat.getColor(activity, R.color.graph_grid_vertical)
+            gridColor = ContextCompat.getColor(context!!, R.color.graph_grid_vertical)
             textSize = 10f
-            textColor = ContextCompat.getColor(activity, R.color.primary)
+            textColor = ContextCompat.getColor(context!!, R.color.primary)
             valueFormatter = GraphXAxisValueFormatter(salaries, GraphTimeInterval.YEAR, 1)
         }
         val rightYAxis = salaries_line_chart.axisRight
@@ -86,7 +86,7 @@ class SalaryGraphFragment : BaseSalaryFragment(), SalariesGraphMvpView {
         dataSet.apply {
             mode = LineDataSet.Mode.CUBIC_BEZIER
             fillAlpha = 110
-            circleColors = GraphUtil.getColors(activity, dataSet)
+            circleColors = GraphUtil.getColors(context!!, dataSet)
             lineWidth = 3f
             circleRadius = 3f
             setDrawCircleHole(false)
@@ -95,8 +95,6 @@ class SalaryGraphFragment : BaseSalaryFragment(), SalariesGraphMvpView {
         }
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_salaries_graph
-    }
+    override fun getLayoutId() = R.layout.fragment_salaries_graph
 
 }

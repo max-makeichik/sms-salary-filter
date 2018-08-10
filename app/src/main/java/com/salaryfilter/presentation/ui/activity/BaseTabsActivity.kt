@@ -19,7 +19,7 @@ abstract class BaseTabsActivity : BaseActivity(), BottomNavigationView.OnNavigat
 
     protected fun setTabs() {
         getViewPager().apply {
-            adapter = MainTabsPagerAdapter(fragmentManager)
+            adapter = MainTabsPagerAdapter(supportFragmentManager)
             offscreenPageLimit = MainTabsPagerAdapter.BOTTOM_NAVIGATION_ITEMS_COUNT
         }
         bottom_navigation.removeShiftMode()

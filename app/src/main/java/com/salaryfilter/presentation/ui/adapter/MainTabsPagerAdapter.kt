@@ -1,8 +1,8 @@
 package com.salaryfilter.presentation.ui.adapter
 
-import android.app.Fragment
-import android.app.FragmentManager
-import android.support.v13.app.FragmentPagerAdapter
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 import com.salaryfilter.R
 import com.salaryfilter.presentation.ui.fragment.SalaryGraphFragment
 import com.salaryfilter.presentation.ui.fragment.SalaryListFragment

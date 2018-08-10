@@ -40,13 +40,13 @@ class SalariesPresenter : BasePresenter<SalariesListMvpView>() {
 
     fun updateSalaries() {
         disposables.add(getSalariesUseCase.getSalaryListOneByOne()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
                     viewState.clearSalary()
                     viewState.showLoading()
                 }
                 .doFinally { viewState.hideLoading() }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { salary ->
                             viewState.addSalaryToList(salary)

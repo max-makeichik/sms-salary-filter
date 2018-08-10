@@ -24,9 +24,8 @@ class MainActivity : BaseTabsActivity(), BaseSalaryFragment.MenuListener, Salari
 
     private lateinit var menu: Menu
 
-    // TODO: 05-Mar-18 register sms receiver to update list and graph
-    override fun onCreate(bundle: Bundle?) {
-        super.onCreate(bundle)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setToolbar(R.string.app_name)
         setTabs()
@@ -105,8 +104,6 @@ class MainActivity : BaseTabsActivity(), BaseSalaryFragment.MenuListener, Salari
             }
         }
     }
-
-
 
     override fun getViewPager(): ViewPager {
         return main_view_pager

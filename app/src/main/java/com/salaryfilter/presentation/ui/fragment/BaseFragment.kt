@@ -5,18 +5,18 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.MvpFragment
+import com.arellomobile.mvp.MvpAppCompatFragment
 import com.salaryfilter.presentation.mvp.view.base.BaseMvpView
 import com.salaryfilter.presentation.ui.ErrorHandleDelegate
 
-abstract class BaseFragment : MvpFragment() {
+abstract class BaseFragment : MvpAppCompatFragment() {
 
     private lateinit var loadDataListener: BaseMvpView
     private val errorHandleDelegate = ErrorHandleDelegate()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        errorHandleDelegate.onCreate(activity)
+        errorHandleDelegate.onCreate(context!!)
     }
 
     override fun onCreateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): View? {
