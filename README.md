@@ -1,4 +1,7 @@
 # sms-salary-filter
-Android app written in Kotlin for filtering sms from mobile bank.
+Android app written in Kotlin.
 
-https://play.google.com/store/apps/details?id=com.salaryfilter
+- Filtering sms from mobile bank
+- Displaying filtered salaries in a chart or list
+- Possibility to change bank number and phrase to filter by in settings
+- Grouping salary messages by month
