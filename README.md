@@ -1,4 +1,4 @@
-# sms-salary-filter
+# SMS Salary Filter
 Android app written in Kotlin.
 
 - Filtering sms from mobile bank
