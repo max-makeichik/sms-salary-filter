@@ -5,3 +5,5 @@ Android app written in Kotlin.
 - Displaying filtered salaries in a chart or list
 - Possibility to change bank number and phrase to filter by in settings
 - Grouping salary messages by month
+
+App uses MVP architecture, Dagger, RxJava2, MPAndroidChart.
